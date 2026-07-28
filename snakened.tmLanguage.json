@@ -1,0 +1,32 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Snakened",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.snakened",
+				"match": "\\b(if|else|return|func|import|print)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.snakened",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.snakened",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.snk"
+}

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snakened | A Linguagem do Futuro</title>
     
-    <!-- Favicon corrigido -->
-    <link rel="icon" type="image/png" href="./src/logolang-snakened.png">
-    <link rel="shortcut icon" type="image/png" href="./src/logolang-snakened.png">
+    <!-- Favicon diretamente na raiz -->
+    <link rel="icon" type="image/png" href="logolang-snakened.png">
+    <link rel="shortcut icon" type="image/png" href="logolang-snakened.png">
 
     <!-- Tailwind CSS e AOS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,7 +26,7 @@
     <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0b0f19]/80 border-b border-white/5">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <img src="./src/logolang-snakened.png" alt="Logo Snakened" class="h-9 w-auto hover:scale-110 transition-transform">
+                <img src="logolang-snakened.png" alt="Logo Snakened" class="h-9 w-auto hover:scale-110 transition-transform">
                 <span class="text-xl font-bold tracking-wider gradient-text">Snakened</span>
             </div>
             <div class="flex items-center gap-4">
@@ -123,7 +123,7 @@
         <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-12">
             <div class="col-span-2">
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="./src/logolang-snakened.png" alt="Logo" class="h-8 w-auto">
+                    <img src="logolang-snakened.png" alt="Logo" class="h-8 w-auto">
                     <span class="text-lg font-bold">Snakened</span>
                 </div>
                 <p class="text-slate-400 text-sm max-w-sm leading-relaxed">
@@ -154,7 +154,7 @@
         </div>
     </footer>
 
-    <!-- Scripts de Interação e Animação -->
+    <!-- Scripts -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const btnExecutar = document.getElementById('btn-executar');
@@ -185,10 +185,7 @@
     
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({
-        duration: 800,
-        once: true,
-      });
+      AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>

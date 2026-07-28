@@ -1,0 +1,10 @@
+# snakned.toml
+[package]
+name = "math_utils"
+version = "1.0.0"
+description = "Uma biblioteca matemática para a Snakened"
+authors = ["João Gonçalves <goncalvesjpl@outlook.com>"]
+license = "MIT"
+
+[dependencies]
+http_client = "2.1.0"

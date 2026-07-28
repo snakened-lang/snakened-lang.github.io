@@ -3,173 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snakened | A Linguagem do Futuro</title>
+    <title>Snakened | A Linguagem de Programação Moderna</title>
     
-    <!-- Favicon diretamente na raiz -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="logolang-snakened.png">
-    <link rel="shortcut icon" type="logolang-snakened.png" href="logolang-snakened.png">
+    <link rel="shortcut icon" type="image/png" href="logolang-snakened.png">
 
-    <!-- Tailwind CSS e AOS -->
+    <!-- Tailwind CSS, AOS e FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
-        body { background-color: #0b0f19; color: #f8fafc; }
-        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
-        .gradient-text { background: linear-gradient(135deg, #3b82f6 0%, #2dd4bf 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        body { background-color: #0b0f19; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .gradient-text { background: linear-gradient(135deg, #38bdf8 0%, #2dd4bf 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glow-bg { background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 60%); }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-blue-500 selection:text-white">
+<body class="antialiased selection:bg-sky-500 selection:text-white glow-bg min-h-screen flex flex-col justify-between">
 
-    <!-- Navegação -->
-    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0b0f19]/80 border-b border-white/5">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Navegação Estilo Rust/Go -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0b0f19]/80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <img src="logolang-snakened.png" alt="Logo Snakened" class="h-9 w-auto hover:scale-110 transition-transform">
-                <span class="text-xl font-bold tracking-wider gradient-text">Snakened</span>
+                <img src="logolang-snakened.png" alt="Logo Snakened" class="h-8 w-auto hover:scale-105 transition-transform">
+                <span class="text-lg font-bold tracking-wider gradient-text font-mono">snakened</span>
             </div>
-            <div class="flex items-center gap-4">
-                <a href="https://github.com/jplgoncalves/snakened#readme" class="text-sm text-slate-300 hover:text-white transition hidden sm:inline-block">Docs</a>
-                <a href="https://github.com/jplgoncalves/snakened" class="glass px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-700/50 transition flex items-center gap-2">
-                    <i class="fab fa-github"></i> GitHub
+            
+            <div class="hidden md:flex items-center gap-8 text-sm text-slate-300 font-medium">
+                <a href="#recursos" class="hover:text-sky-400 transition">Recursos</a>
+                <a href="#exemplo" class="hover:text-sky-400 transition">Documentação</a>
+                <a href="https://github.com/jplgoncalves/snakened#readme" class="hover:text-sky-400 transition" target="_blank">Manual</a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="https://github.com/jplgoncalves/snakened" target="_blank" class="glass px-4 py-2 rounded-lg text-xs font-medium hover:bg-slate-800 transition flex items-center gap-2 border border-white/10">
+                    <i class="fab fa-github text-sm"></i> GitHub
                 </a>
             </div>
         </div>
     </nav>
 
-    <!-- Header Principal -->
-    <header class="pt-32 pb-16 px-6 text-center max-w-4xl mx-auto" data-aos="fade-up">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-xs font-medium text-sky-400 mb-6 border border-sky-500/20">
-            <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-            Versão 1.0 Disponível
-        </div>
-        <h1 class="text-4xl sm:text-6xl font-extrabold mb-6 tracking-tight leading-tight">
-            Inspirada em Python. <br><span class="gradient-text">Forjada para Performance.</span>
-        </h1>
-        <p class="text-slate-400 text-base sm:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-            Snakened combina a legibilidade amada do Python com a velocidade bruta necessária para sistemas de próxima geração. Simples, segura e veloz.
-        </p>
-        
-        <div class="flex justify-center gap-4 flex-wrap">
-            <button id="btn-comecar" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3.5 rounded-xl font-medium transition shadow-lg shadow-blue-500/25">
-                Começar Agora
-            </button>
-            <button id="btn-executar" class="bg-emerald-600 hover:bg-emerald-500 text-white px-8 py-3.5 rounded-xl font-medium transition shadow-lg shadow-emerald-500/25 flex items-center">
-                <i class="fas fa-play mr-2 text-xs"></i> Executar no Cloud
-            </button>
-            <button id="btn-documentacao" class="glass px-8 py-3.5 rounded-xl font-medium hover:bg-slate-800 transition">
-                Documentação
-            </button>
-        </div>
-    </header>
-
-    <!-- Bloco de Código Interativo / Exemplo -->
-    <section class="max-w-4xl mx-auto px-6 py-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="glass rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            <div class="bg-slate-900/80 px-4 py-3 flex items-center justify-between border-b border-white/5">
-                <div class="flex items-center gap-2">
-                    <div class="flex gap-1.5">
-                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                    </div>
-                    <span class="text-slate-400 text-xs ml-3 font-mono">fibonacci.snk</span>
-                </div>
-                <span class="text-xs text-slate-500 font-mono">Snakened Runtime</span>
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Header / Hero Section -->
+        <header class="pt-32 pb-16 px-6 text-center max-w-5xl mx-auto" data-aos="fade-up">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass text-xs font-mono font-medium text-sky-400 mb-8 border border-sky-500/20 shadow-lg shadow-sky-500/5">
+                <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+                v1.0.0-stable lançada
             </div>
-            <div class="p-6 font-mono text-sm sm:text-base leading-relaxed overflow-x-auto bg-[#090d16]">
-                <pre><code><span class="text-pink-500">func</span> <span class="text-blue-400">calcular_fibonacci</span>(n: <span class="text-yellow-500">int</span>) -> <span class="text-yellow-500">int</span>:
+            
+            <h1 class="text-4xl sm:text-7xl font-extrabold mb-6 tracking-tight leading-[1.1]">
+                A linguagem para sistemas <br><span class="gradient-text">rápidos e confiáveis.</span>
+            </h1>
+            
+            <p class="text-slate-400 text-base sm:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+                Snakened capacita desenvolvedores a criarem software eficiente. Sintaxe intuitiva inspirada em Python, desempenho otimizado de baixo nível.
+            </p>
+            
+            <!-- Caixa de Comando de Instalação (Estilo Cargo / Go Get) -->
+            <div class="max-w-md mx-auto mb-10">
+                <div class="glass p-2 rounded-xl flex items-center justify-between border border-white/10 shadow-2xl">
+                    <div class="flex items-center gap-3 px-3 font-mono text-xs sm:text-sm text-slate-300 overflow-x-auto">
+                        <span class="text-sky-400">$</span>
+                        <span id="install-command">curl -sSf https://snakened.org/install.snk | sh</span>
+                    </div>
+                    <button onclick="copyCommand()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1.5 rounded-lg text-xs font-mono transition flex items-center gap-1.5 border border-white/5 active:scale-95">
+                        <i class="fas fa-copy" id="copy-icon"></i> <span id="copy-text">Copiar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="flex justify-center gap-4 flex-wrap">
+                <button id="btn-comecar" class="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold px-8 py-3.5 rounded-xl transition shadow-lg shadow-sky-500/20 text-sm">
+                    Começar a Programar
+                </button>
+                <button id="btn-executar" class="glass hover:bg-slate-800 text-white font-medium px-8 py-3.5 rounded-xl transition flex items-center gap-2 text-sm border border-white/10">
+                    <i class="fas fa-terminal text-sky-400 text-xs"></i> Cloud Playground
+                </button>
+            </div>
+        </header>
+
+        <!-- Bloco de Código / IDE Preview -->
+        <section id="exemplo" class="max-w-4xl mx-auto px-6 py-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="glass rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+                <!-- Barra Superior IDE -->
+                <div class="bg-slate-900/90 px-4 py-3 flex items-center justify-between border-b border-white/5">
+                    <div class="flex items-center gap-2">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+                        </div>
+                        <span class="text-slate-400 text-xs ml-3 font-mono">main.snk</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-xs text-slate-400 font-mono">
+                        <span class="px-2 py-0.5 rounded bg-sky-500/10 text-sky-400 border border-sky-500/20">Snakened 1.0</span>
+                    </div>
+                </div>
+                <!-- Código Formatado -->
+                <div class="p-6 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto bg-[#070a12]">
+                    <pre><code><span class="text-pink-500">func</span> <span class="text-sky-400">calcular_fibonacci</span>(n: <span class="text-yellow-400">int</span>) -> <span class="text-yellow-400">int</span>:
     <span class="text-pink-500">if</span> n &lt;= <span class="text-orange-400">1</span>:
         <span class="text-pink-500">return</span> n
-    <span class="text-pink-500">return</span> <span class="text-blue-400">calcular_fibonacci</span>(n - <span class="text-orange-400">1</span>) + <span class="text-blue-400">calcular_fibonacci</span>(n - <span class="text-orange-400">2</span>)
+    <span class="text-pink-500">return</span> <span class="text-sky-400">calcular_fibonacci</span>(n - <span class="text-orange-400">1</span>) + <span class="text-sky-400">calcular_fibonacci</span>(n - <span class="text-orange-400">2</span>)
 
-<span class="text-blue-400">print</span>(f<span class="text-green-400">"Resultado: {calcular_fibonacci(10)}"</span>)</code></pre>
-            </div>
-        </div>
-    </section>
-
-    <!-- Secção de Recursos (Grid) -->
-    <section class="max-w-6xl mx-auto px-6 py-20">
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="glass p-8 rounded-2xl hover:border-sky-500/40 transition duration-300" data-aos="fade-up" data-aos-delay="0">
-                <div class="w-12 h-12 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 border border-sky-500/20">
-                    <i class="fas fa-bolt text-xl"></i>
+<span class="text-slate-500"># Ponto de entrada principal</span>
+<span class="text-pink-500">pub</span> <span class="text-pink-500">func</span> <span class="text-sky-400">main</span>() -> <span class="text-yellow-400">void</span>:
+    <span class="text-slate-300">res</span>: <span class="text-yellow-400">int</span> = <span class="text-sky-400">calcular_fibonacci</span>(<span class="text-orange-400">10</span>)
+    <span class="text-sky-400">print</span>(f<span class="text-green-400">"Resultado otimizado: {res}"</span>)</code></pre>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Alta Performance</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Compilação otimizada para tirar o máximo proveito do hardware, mantendo a leveza e a agilidade do código.</p>
             </div>
+        </section>
 
-            <div class="glass p-8 rounded-2xl hover:border-emerald-500/40 transition duration-300" data-aos="fade-up" data-aos-delay="100">
-                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6 text-emerald-400 border border-emerald-500/20">
-                    <i class="fas fa-shield-alt text-xl"></i>
+        <!-- Estatísticas da Linguagem -->
+        <section class="max-w-6xl mx-auto px-6 py-12" data-aos="fade-up">
+            <div class="glass rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center border border-white/5">
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-sky-400 font-mono mb-1">Zero</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-wider">Overhead de GC</div>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Memory Safe</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Gerenciamento de memória inteligente sem os gargalos e pausas indesejadas de um Garbage Collector tradicional.</p>
-            </div>
-
-            <div class="glass p-8 rounded-2xl hover:border-blue-500/40 transition duration-300" data-aos="fade-up" data-aos-delay="200">
-                <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 text-blue-400 border border-blue-500/20">
-                    <i class="fas fa-code text-xl"></i>
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono mb-1">100%</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-wider">Memory Safe</div>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Sintaxe Familiar</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">Se você já conhece Python, você já compreende grande parte da estrutura do Snakened desde o primeiro segundo.</p>
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-indigo-400 font-mono mb-1">LLVM</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-wider">Backend de Compilação</div>
+                </div>
+                <div>
+                    <div class="text-3xl sm:text-4xl font-extrabold text-amber-400 font-mono mb-1">Familiar</div>
+                    <div class="text-xs sm:text-sm text-slate-400 uppercase tracking-wider">Sintaxe tipo Python</div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Rodapé -->
-    <footer class="border-t border-white/5 bg-[#080c14] pt-16 pb-8">
-        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-12">
+        <!-- Secção de Recursos (Grid Técnico) -->
+        <section id="recursos" class="max-w-6xl mx-auto px-6 py-16">
+            <div class="text-center max-w-2xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4">Construída para o futuro da engenharia</h2>
+                <p class="text-slate-400 text-sm">Projetada desde o início para eliminar complexidades desnecessárias no desenvolvimento de software moderno.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-2xl hover:border-sky-500/40 transition duration-300" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 border border-sky-500/20">
+                        <i class="fas fa-bolt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Performance Nativa</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Compilação estrita através de LLVM que entrega velocidades executáveis comparáveis a C e C++.</p>
+                </div>
+
+                <div class="glass p-8 rounded-2xl hover:border-emerald-500/40 transition duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6 text-emerald-400 border border-emerald-500/20">
+                        <i class="fas fa-shield-alt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Segurança de Memória</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Sistema de empréstimo e tipos estáticos avançados que previnem falhas de segmentação em tempo de compilação.</p>
+                </div>
+
+                <div class="glass p-8 rounded-2xl hover:border-blue-500/40 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 text-blue-400 border border-blue-500/20">
+                        <i class="fas fa-code-branch text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">Concorrência Simples</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Gerencie threads e tarefas assíncronas de forma nativa e sem esforço, aproveitando múltiplos núcleos.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé Estilo Repositório Oficial -->
+    <footer class="border-t border-white/5 bg-[#070a12] pt-16 pb-8 mt-20">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 mb-12">
             <div class="col-span-2">
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="logolang-snakened.png" alt="Logo" class="h-8 w-auto">
-                    <span class="text-lg font-bold">Snakened</span>
+                    <img src="logolang-snakened.png" alt="Logo" class="h-7 w-auto">
+                    <span class="text-base font-bold font-mono">Snakened Project</span>
                 </div>
-                <p class="text-slate-400 text-sm max-w-sm leading-relaxed">
-                    Uma linguagem de programação moderna, focada em velocidade e simplicidade. Desenvolvida para a nova geração de programadores.
+                <p class="text-slate-400 text-xs max-w-sm leading-relaxed">
+                    Linguagem de programação open-source de código aberto focada em segurança, ergonomia de desenvolvimento e alta performance computacional.
                 </p>
             </div>
 
             <div>
-                <h4 class="font-semibold text-sm mb-4 text-slate-200 uppercase tracking-wider">Recursos</h4>
-                <ul class="space-y-3 text-sm text-slate-400">
+                <h4 class="font-semibold text-xs mb-4 text-slate-200 uppercase tracking-wider font-mono">Ecossistema</h4>
+                <ul class="space-y-2.5 text-xs text-slate-400">
                     <li><a href="https://github.com/jplgoncalves/snakened" class="hover:text-sky-400 transition">Repositório GitHub</a></li>
-                    <li><a href="https://github.com/jplgoncalves/snakened#readme" class="hover:text-sky-400 transition">Documentação Oficial</a></li>
-                    <li><a href="https://github.com/jplgoncalves/snakened/issues" class="hover:text-sky-400 transition">Reportar um Bug</a></li>
+                    <li><a href="https://github.com/jplgoncalves/snakened#readme" class="hover:text-sky-400 transition">Documentação Técnica</a></li>
+                    <li><a href="https://github.com/jplgoncalves/snakened/releases" class="hover:text-sky-400 transition">Notas de Lançamento</a></li>
                 </ul>
             </div>
 
             <div>
-                <h4 class="font-semibold text-sm mb-4 text-slate-200 uppercase tracking-wider">Autor</h4>
-                <ul class="space-y-3 text-sm text-slate-400">
-                    <li><a href="https://github.com/jplgoncalves" class="hover:text-sky-400 transition flex items-center gap-2"><i class="fab fa-github"></i> João Gonçalves</a></li>
-                    <li><span class="text-xs text-slate-500">© 2026 Snakened Language</span></li>
+                <h4 class="font-semibold text-xs mb-4 text-slate-200 uppercase tracking-wider font-mono">Comunidade</h4>
+                <ul class="space-y-2.5 text-xs text-slate-400">
+                    <li><a href="https://github.com/jplgoncalves" class="hover:text-sky-400 transition flex items-center gap-1.5"><i class="fab fa-github"></i> João Gonçalves</a></li>
+                    <li><a href="https://github.com/jplgoncalves/snakened/issues" class="hover:text-sky-400 transition">Reportar um Problema</a></li>
                 </ul>
             </div>
         </div>
         
-        <div class="max-w-6xl mx-auto px-6 pt-8 border-t border-white/5 text-center text-slate-500 text-xs">
-            <p>Feito com ❤️ por e para desenvolvedores.</p>
+        <div class="max-w-7xl mx-auto px-6 pt-8 border-t border-white/5 text-center text-slate-500 text-xs flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p>© 2026 Snakened Language. Todos os direitos reservados.</p>
+            <p class="font-mono text-[11px]">Designed with precision for developers.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts de Interação -->
     <script>
+      // Função para copiar o comando de instalação
+      function copyCommand() {
+        const cmdText = document.getElementById('install-command').innerText;
+        navigator.clipboard.writeText(cmdText);
+        
+        const icon = document.getElementById('copy-icon');
+        const text = document.getElementById('copy-text');
+        
+        icon.className = "fas fa-check text-emerald-400";
+        text.innerText = "Copiado!";
+        
+        setTimeout(() => {
+          icon.className = "fas fa-copy";
+          text.innerText = "Copiar";
+        }, 2000);
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
         const btnExecutar = document.getElementById('btn-executar');
         if (btnExecutar) {
           btnExecutar.onclick = (e) => {
             e.preventDefault();
             window.open("https://shell.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/jplgoncalves/snakened", '_blank');
-          };
-        }
-
-        const btnDoc = document.getElementById('btn-documentacao');
-        if (btnDoc) {
-          btnDoc.onclick = (e) => {
-            e.preventDefault();
-            window.open('https://github.com/jplgoncalves/snakened#readme', '_blank');
           };
         }
 
